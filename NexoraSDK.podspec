@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = 'NexoraSDK'
-  s.version      = '0.0.1'
+  s.version      = '0.0.3'
   s.summary      = 'Nexora iOS SDK'
   s.description  = 'Nexora iOS SDK distributed as a precompiled XCFramework.'
 
@@ -15,12 +15,12 @@ Pod::Spec.new do |s|
     'Nexora' => 'usenexora@gmail.com'
   }
 
-  s.platform = :ios, '13.0'
+  s.platform = :ios, '15.0'
   s.swift_version = '5.9'
 
   # The XCFramework
   s.source = {
-    :http => 'https://github.com/ksanexora/nexora_ios_sdk_builds/releases/download/0.0.1/NexoraSDK.xcframework.zip'
+    :http => 'https://github.com/ksanexora/nexora_ios_sdk_builds/releases/download/0.0.3/NexoraSDK.xcframework.zip'
   }
 
   # Path inside the ZIP
