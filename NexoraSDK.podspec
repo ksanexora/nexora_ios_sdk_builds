@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
 
   # The XCFramework
   s.source = {
-    :http => 'https://github.com/usenexora/nexora_ios_sdk_build/releases/download/0.0.1/NexoraSDK.xcframework.zip'
+    :http => 'https://github.com/ksanexora/nexora_ios_sdk_builds/releases/download/0.0.1/NexoraSDK.xcframework.zip'
   }
 
   # Path inside the ZIP
