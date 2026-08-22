@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = 'NexoraSDK'
-  s.version      = '0.0.5'
+  s.version      = '0.0.6'
   s.summary      = 'Nexora iOS SDK'
   s.description  = 'Nexora iOS SDK distributed as a precompiled XCFramework.'
 
