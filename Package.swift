@@ -16,8 +16,8 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "NexoraSDK",
-            url: "https://github.com/ksanexora/nexora_ios_sdk_builds/releases/download/0.0.10/NexoraSDK.xcframework.zip",
-            checksum: "ccd2efe47d45f7467083b10be4462028a9f250c434a6eb1c6aa9300aff70521c"
+            url: "https://github.com/ksanexora/nexora_ios_sdk_builds/releases/download/0.0.11/NexoraSDK.xcframework.zip",
+            checksum: "f3dc8e3d4852ea337e58dfa27d5bf63370d3058a607ec7c21d462c2dc7783062"
         )
     ]
 )
