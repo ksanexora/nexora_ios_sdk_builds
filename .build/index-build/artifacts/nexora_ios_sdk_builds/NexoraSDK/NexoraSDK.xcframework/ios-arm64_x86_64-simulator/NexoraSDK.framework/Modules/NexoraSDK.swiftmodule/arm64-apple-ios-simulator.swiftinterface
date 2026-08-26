@@ -1,0 +1,282 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.3.3 effective-5.10 (swiftlang-6.3.3.1.3 clang-2100.1.1.101)
+// swift-module-flags: -target arm64-apple-ios15.6-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -O -enable-upcoming-feature DisableOutwardActorInference -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature GlobalActorIsolatedTypesUsability -enable-upcoming-feature MemberImportVisibility -enable-upcoming-feature InferIsolatedConformances -enable-upcoming-feature NonisolatedNonsendingByDefault -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name NexoraSDK
+// swift-module-flags-ignorable:  -formal-cxx-interoperability-mode=off -interface-compiler-version 6.3.3
+import ActivityKit
+import Foundation
+import Network
+import Swift
+import UIKit
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+import os.log
+import os
+@available(iOS 16.1, *)
+public struct DeliveryAttributes : ActivityKit.ActivityAttributes, NexoraSDK.NexoraActivityType {
+  public static var activityTypeName: Swift.String {
+    get
+  }
+  public typealias DeliveryStatus = NexoraSDK.DeliveryAttributes.ContentState
+  public struct ContentState : Swift.Codable, Swift.Hashable {
+    public var status: Swift.String
+    public var etaText: Swift.String
+    public var driverLatitude: Swift.Double
+    public var driverLongitude: Swift.Double
+    public var progressValue: Swift.Double
+    public init(status: Swift.String, etaText: Swift.String, driverLatitude: Swift.Double, driverLongitude: Swift.Double, progressValue: Swift.Double)
+    public static func == (a: NexoraSDK.DeliveryAttributes.ContentState, b: NexoraSDK.DeliveryAttributes.ContentState) -> Swift.Bool
+    public func encode(to encoder: any Swift.Encoder) throws
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+    public init(from decoder: any Swift.Decoder) throws
+  }
+  public var orderNumber: Swift.String
+  public var driverName: Swift.String
+  public var restaurantName: Swift.String
+  public init(orderNumber: Swift.String, driverName: Swift.String, restaurantName: Swift.String)
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+@_hasMissingDesignatedInitializers @available(iOS 16.1, *)
+public class LiveActivityManager {
+  public static let shared: NexoraSDK.LiveActivityManager
+  @available(iOS 17.2, *)
+  public func observePushToStartToken()
+  @available(iOS 16.2, *)
+  public func observeActivityLifecycle()
+  public func start(orderNumber: Swift.String, driverName: Swift.String, restaurantName: Swift.String, minutes: Swift.Int = 25)
+  public func update(status: Swift.String)
+  public func end(finalStatus: Swift.String)
+  @objc deinit
+}
+@available(iOS 16.1, *)
+public protocol NexoraActivityType : ActivityKit.ActivityAttributes {
+  static var activityTypeName: Swift.String { get }
+}
+@available(iOS 16.1, *)
+public struct RideAttributes : ActivityKit.ActivityAttributes, NexoraSDK.NexoraActivityType {
+  public static var activityTypeName: Swift.String {
+    get
+  }
+  public typealias RideStatus = NexoraSDK.RideAttributes.ContentState
+  public struct ContentState : Swift.Codable, Swift.Hashable {
+    public var status: Swift.String
+    public var etaMinutes: Swift.Int
+    public var driverImageURL: Swift.String?
+    public var progressValue: Swift.Double
+    public var carImageURL: Swift.String?
+    public init(status: Swift.String, etaMinutes: Swift.Int, driverImageURL: Swift.String? = nil, progressValue: Swift.Double, carImageURL: Swift.String? = nil)
+    public static func == (a: NexoraSDK.RideAttributes.ContentState, b: NexoraSDK.RideAttributes.ContentState) -> Swift.Bool
+    public func encode(to encoder: any Swift.Encoder) throws
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+    public init(from decoder: any Swift.Decoder) throws
+  }
+  public var driverName: Swift.String
+  public var carNumber: Swift.String
+  public var carModel: Swift.String
+  public init(driverName: Swift.String, carNumber: Swift.String, carModel: Swift.String)
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+@available(iOS 16.1, *)
+public struct ScoreAttributes : ActivityKit.ActivityAttributes, NexoraSDK.NexoraActivityType {
+  public static var activityTypeName: Swift.String {
+    get
+  }
+  public typealias ContentState = NexoraSDK.ScoreAttributes.ScoreStatus
+  public var homeTeamName: Swift.String
+  public var awayTeamName: Swift.String
+  public var homeTeamLogoURL: Swift.String?
+  public var awayTeamLogoURL: Swift.String?
+  public struct ScoreStatus : Swift.Codable, Swift.Hashable {
+    public var homeScore: Swift.Int
+    public var awayScore: Swift.Int
+    public var matchStatus: Swift.String
+    public var matchMinute: Swift.Int
+    public init(homeScore: Swift.Int, awayScore: Swift.Int, matchStatus: Swift.String, matchMinute: Swift.Int)
+    public static func == (a: NexoraSDK.ScoreAttributes.ScoreStatus, b: NexoraSDK.ScoreAttributes.ScoreStatus) -> Swift.Bool
+    public func encode(to encoder: any Swift.Encoder) throws
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+    public init(from decoder: any Swift.Decoder) throws
+  }
+  public init(homeTeamName: Swift.String, awayTeamName: Swift.String, homeTeamLogoURL: Swift.String? = nil, awayTeamLogoURL: Swift.String? = nil)
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public enum CodableValue : Swift.Codable, Swift.Equatable {
+  case string(Swift.String)
+  case int(Swift.Int)
+  case double(Swift.Double)
+  case bool(Swift.Bool)
+  case dictionary([Swift.String : NexoraSDK.CodableValue])
+  case array([NexoraSDK.CodableValue])
+  case null
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
+  public static func == (a: NexoraSDK.CodableValue, b: NexoraSDK.CodableValue) -> Swift.Bool
+}
+public struct DeviceInfo : Swift.Codable, Swift.Equatable {
+  public let firebase_token: Swift.String?
+  public var device_token: Swift.String?
+  public let os_name: Swift.String
+  public let os_version: Swift.String
+  public let device_name: Swift.String
+  public let device_model: Swift.String
+  public let device_manufacturer: Swift.String?
+  public let carrier: Swift.String?
+  public let device_type: Swift.String
+  public let browser: Swift.String?
+  public let browser_version: Swift.String?
+  public let userAgent: Swift.String?
+  public let app_platform: Swift.String?
+  public let platform: Swift.String?
+  public let device_brand: Swift.String?
+  public static func == (a: NexoraSDK.DeviceInfo, b: NexoraSDK.DeviceInfo) -> Swift.Bool
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct AppInfo : Swift.Codable, Swift.Equatable {
+  public let name: Swift.String
+  public let version: Swift.String
+  public let build_number: Swift.String
+  public let sdk_version: Swift.String
+  public static func == (a: NexoraSDK.AppInfo, b: NexoraSDK.AppInfo) -> Swift.Bool
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct NetworkInfo : Swift.Codable, Swift.Equatable {
+  public let connection_type: Swift.String
+  public let ip_address: Swift.String?
+  public static func == (a: NexoraSDK.NetworkInfo, b: NexoraSDK.NetworkInfo) -> Swift.Bool
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct ContextInfo : Swift.Codable, Swift.Equatable {
+  public let locale: Swift.String
+  public let timezone: Swift.String
+  public static func == (a: NexoraSDK.ContextInfo, b: NexoraSDK.ContextInfo) -> Swift.Bool
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct UserInfo : Swift.Codable, Swift.Equatable {
+  public static func == (a: NexoraSDK.UserInfo, b: NexoraSDK.UserInfo) -> Swift.Bool
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct EventPayload : Swift.Codable, Swift.Equatable {
+  public let id: Swift.String
+  public let timestamp: Swift.String
+  public let session_id: Swift.String
+  public let session_start_time: Swift.String
+  public let device: NexoraSDK.DeviceInfo
+  public let app: NexoraSDK.AppInfo
+  public let network: NexoraSDK.NetworkInfo?
+  public let context: NexoraSDK.ContextInfo
+  public let client_id: Swift.String
+  public let platform: Swift.String
+  public let user: NexoraSDK.UserInfo
+  public let event_name: Swift.String
+  public let event_properties: [Swift.String : NexoraSDK.CodableValue]?
+  public let live_activity_properties: [Swift.String : NexoraSDK.CodableValue]?
+  public static func == (a: NexoraSDK.EventPayload, b: NexoraSDK.EventPayload) -> Swift.Bool
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct TokenPayload : Swift.Codable, Swift.Equatable {
+  public let event_name: Swift.String
+  public let timestamp: Swift.String
+  public let activity_id: Swift.String?
+  public let live_activity_type: Swift.String
+  public let token: Swift.String
+  public let token_type: Swift.String
+  public let device_id: Swift.String
+  public let user: NexoraSDK.UserInfo
+  public let device: NexoraSDK.DeviceInfo
+  public static func == (a: NexoraSDK.TokenPayload, b: NexoraSDK.TokenPayload) -> Swift.Bool
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public enum UploadTarget {
+  case profile
+  case system
+  case custom
+  public var endpoint: Swift.String {
+    get
+  }
+  public static func == (a: NexoraSDK.UploadTarget, b: NexoraSDK.UploadTarget) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public class DataUploader {
+  final public let clientID: Swift.String
+  public init(baseURLString: Swift.String, apiKey: Swift.String, clientid: Swift.String, projectID: Swift.String)
+  public func uploadSingleEventImmediately(event: NexoraSDK.EventPayload, completion: @escaping (Swift.Result<Swift.Void, any Swift.Error>) -> Swift.Void)
+  public func uploadLiveActivityToken(event: Foundation.Data, completion: @escaping (Swift.Result<Swift.Void, any Swift.Error>) -> Swift.Void)
+  public func uploadAppClosedEventImmediately(event: NexoraSDK.EventPayload, completion: @escaping (Swift.Result<Swift.Void, any Swift.Error>) -> Swift.Void)
+  public func uploadSystemEvents(events: [NexoraSDK.EventPayload], completion: @escaping (Swift.Result<Swift.Void, any Swift.Error>) -> Swift.Void)
+  public func uploadCustomEvents(events: [NexoraSDK.EventPayload], completion: @escaping (Swift.Result<Swift.Void, any Swift.Error>) -> Swift.Void)
+  @objc deinit
+}
+public class EventStore {
+  public var onLimitReached: (([NexoraSDK.EventPayload], NexoraSDK.UploadTarget) -> Swift.Void)?
+  public init(maxEvents: Swift.Int, target: NexoraSDK.UploadTarget)
+  public func addEvent(_ event: NexoraSDK.EventPayload)
+  public func flush()
+  public func removeUploadedEvents(_ uploadedEvents: [NexoraSDK.EventPayload])
+  public func readdEvents(_ failedEvents: [NexoraSDK.EventPayload])
+  public var currentEventCount: Swift.Int {
+    get
+  }
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class Nexora : ObjectiveC.NSObject, UserNotifications.UNUserNotificationCenterDelegate {
+  public static let shared: NexoraSDK.Nexora
+  public func setDeviceToken(_ token: Swift.String)
+  public func getDeviceToken() -> Swift.String?
+  public enum NexoraLiveActivityTemplate : Swift.String {
+    case deliveryStatus
+    case rideShare
+    public init?(rawValue: Swift.String)
+    public typealias RawValue = Swift.String
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public var firebaseToken: Swift.String? {
+    get
+    set
+  }
+  public func configure(baseURLString: Swift.String, apiKey: Swift.String, clientId: Swift.String, projectID: Swift.String, launchOptions: [UIKit.UIApplication.LaunchOptionsKey : Any]?)
+  @objc public func userNotificationCenter(_ center: UserNotifications.UNUserNotificationCenter, willPresent notification: UserNotifications.UNNotification, withCompletionHandler completionHandler: @escaping (UserNotifications.UNNotificationPresentationOptions) -> Swift.Void)
+  @objc public func userNotificationCenter(_ center: UserNotifications.UNUserNotificationCenter, didReceive response: UserNotifications.UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Swift.Void)
+  public func trackEvent(name: Swift.String, properties: [Swift.String : NexoraSDK.CodableValue]? = nil, liveActivityTokenProperties: [Swift.String : NexoraSDK.CodableValue]? = nil, liveActivityProperties: [Swift.String : NexoraSDK.CodableValue]? = nil)
+  public func identify(userID: Swift.String? = nil, email: Swift.String? = nil, mobile: Swift.String? = nil, name: Swift.String? = nil)
+  @objc deinit
+}
+public class SessionManager {
+  public var currentSessionId: Swift.String {
+    get
+  }
+  public var sessionStartTime: Swift.String {
+    get
+  }
+  public init(sessionTimeout: Foundation.TimeInterval)
+  public func markActivity()
+  @objc deinit
+}
+extension NexoraSDK.UploadTarget : Swift.Equatable {}
+extension NexoraSDK.UploadTarget : Swift.Hashable {}
+extension NexoraSDK.Nexora.NexoraLiveActivityTemplate : Swift.Equatable {}
+extension NexoraSDK.Nexora.NexoraLiveActivityTemplate : Swift.Hashable {}
+extension NexoraSDK.Nexora.NexoraLiveActivityTemplate : Swift.RawRepresentable {}
