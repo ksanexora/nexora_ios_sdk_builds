@@ -30,6 +30,8 @@ Pod::Spec.new do |s|
     'UIKit',
     'Network',
     'CoreTelephony',
-    'ActivityKit'
+    'UserNotifications'
   ]
+
+  s.weak_framework = 'ActivityKit'
 end
